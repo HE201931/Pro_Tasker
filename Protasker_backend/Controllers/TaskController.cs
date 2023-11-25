@@ -35,7 +35,7 @@ namespace Protasker_backend
         /// <param name="taskModel">La nouvelle tâche insérée dans la base de données</param>
         /// <returns>La nouvelle tâche créée</returns>
         [HttpPost("/api/v1/tasks")]
-        public async Task<ActionResult<ServiceResponse<TaskModel>>> CreateTask(TaskModel taskModel)
+        public async Task<ActionResult<ServiceResponse<CreateTaskDto>>> CreateTask(CreateTaskDto taskModel)
         {
             return Ok(await this._TaskService.CreateTask(taskModel)); 
         }

@@ -5,7 +5,7 @@ namespace Protasker_backend
     {
         Task<ServiceResponse<List<TaskModel>>> GetTasks();
         Task<ServiceResponse<TaskModel>> GetTaskByID(int id);
-        Task<ServiceResponse<TaskModel>> CreateTask(TaskModel taskModel);
+        Task<ServiceResponse<CreateTaskDto>> CreateTask(CreateTaskDto taskModel);
         Task<ServiceResponse<TaskModel>> UpdateTask(TaskModel taskModel);
         Task<ServiceResponse<TaskModel>> DeleteTask(int id);  
     }

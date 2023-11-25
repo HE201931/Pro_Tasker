@@ -8,7 +8,7 @@ namespace Protasker_backend
         /// Classe de base des tâches
         /// </summary>
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public enum TaskStatus 
+        public enum TaskModelStatus 
         {
             [Description("En cours")]
             EN_COURS = 0x0,
@@ -20,9 +20,8 @@ namespace Protasker_backend
 
         [Key]
         public int Id { get;set; }
-
-        [ForeignKey("UserModel")]
         public int UserID { get;set; }
+        public UserModel? UserModel {get; set;}
         public string ?Libelle { get;set; }
         public TaskStatus Status { get;set; }
     }
