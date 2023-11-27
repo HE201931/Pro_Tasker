@@ -1,0 +1,19 @@
+@import "../../styles/config.scss";
+
+.single-task-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+
+    p {
+        font-family: $police;
+        font-size: 18px;
+        color: rgb(60,60,60);
+    }
+    .file-image
+    {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;        
+    }
+}

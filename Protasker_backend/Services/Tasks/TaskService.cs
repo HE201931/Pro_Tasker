@@ -12,15 +12,15 @@ namespace Protasker_backend
             this._Mapper = mapper;
         }
 
-        public async Task<ServiceResponse<CreateTaskDto>> CreateTask(CreateTaskDto taskModel)
+        public async Task<ServiceResponse<CreateTaskDto>> CreateTask(CreateTaskDto createTaskDto)
         {
             ServiceResponse<CreateTaskDto> serviceResponse = new ServiceResponse<CreateTaskDto>();
             try
             {
 
-                await this._DataContext.AddAsync(_Mapper.Map<TaskModel>(taskModel));
+                await this._DataContext.AddAsync(_Mapper.Map<TaskModel>(createTaskDto));
                 await this._DataContext.SaveChangesAsync();
-                serviceResponse.Data = taskModel;
+                serviceResponse.Data = createTaskDto;
             }
             catch(Exception ex)
             {
@@ -81,16 +81,17 @@ namespace Protasker_backend
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<TaskModel>> UpdateTask(TaskModel taskModel)
+        public async Task<ServiceResponse<UpdateTaskDto>> UpdateTask(UpdateTaskDto updateTaskDto)
         {
-            ServiceResponse<TaskModel> serviceResponse = new ServiceResponse<TaskModel>();
+            ServiceResponse<UpdateTaskDto> serviceResponse = new ServiceResponse<UpdateTaskDto>();
             try
             {
+                TaskModel taskModel = _Mapper.Map<TaskModel>(updateTaskDto);
                 List<TaskModel> taskList = await this._DataContext.Tasks.ToListAsync();
-                TaskModel taskToUpdate = taskList.FirstOrDefault(t => t.Id == taskModel.Id)!;
-                taskToUpdate.Status = taskModel.Status;
-                taskToUpdate.Libelle = taskModel.Libelle;
-                serviceResponse.Data = taskToUpdate;
+                TaskModel taskToUpdate = taskList.FirstOrDefault(t => t.Id == updateTaskDto.Id)!;
+                taskToUpdate.Status = updateTaskDto.Status;
+                taskToUpdate.Libelle = updateTaskDto.Libelle;
+                serviceResponse.Data = updateTaskDto;
                 await this._DataContext.SaveChangesAsync();
             }
             catch(Exception ex)
@@ -101,12 +102,12 @@ namespace Protasker_backend
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<TaskModel>> DeleteTask(int id)
+        public async Task<ServiceResponse<DeleteTaskDto>> DeleteTask(DeleteTaskDto deleteTaskDto)
         {   
-            ServiceResponse<TaskModel> serviceResponse = new ServiceResponse<TaskModel>();
+            ServiceResponse<DeleteTaskDto> serviceResponse = new ServiceResponse<DeleteTaskDto>();
             try
             {
-                TaskModel taskToDelete = await this._DataContext.Tasks.FirstOrDefaultAsync(t => t.Id == id)?? throw new NullReferenceException("Not found");
+                TaskModel taskToDelete = await this._DataContext.Tasks.FirstOrDefaultAsync(t => t.Id == deleteTaskDto.Id)?? throw new NullReferenceException("Not found");
                 TaskModel taskDeleted = new TaskModel()
                 {
                     Id = taskToDelete.Id,
@@ -116,7 +117,7 @@ namespace Protasker_backend
                 };
                 this._DataContext.Tasks.Remove(taskToDelete);
                 await this._DataContext.SaveChangesAsync();
-                serviceResponse.Data = taskDeleted;
+                serviceResponse.Data = deleteTaskDto;
             }
             catch(Exception ex)
             {

@@ -35,9 +35,9 @@ namespace Protasker_backend
         /// <param name="taskModel">La nouvelle tâche insérée dans la base de données</param>
         /// <returns>La nouvelle tâche créée</returns>
         [HttpPost("/api/v1/tasks")]
-        public async Task<ActionResult<ServiceResponse<CreateTaskDto>>> CreateTask(CreateTaskDto taskModel)
+        public async Task<ActionResult<ServiceResponse<CreateTaskDto>>> CreateTask(CreateTaskDto createTaskDto)
         {
-            return Ok(await this._TaskService.CreateTask(taskModel)); 
+            return Ok(await this._TaskService.CreateTask(createTaskDto)); 
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace Protasker_backend
         /// </summary>
         /// <param name="taskModel">La tâche à mettre à jour</param>
         /// <returns>La tâche mise à jour</returns>
-        [HttpPut("/api/v1/tasks/{id}")]
-        public async Task<ActionResult<ServiceResponse<TaskModel>>> UpdateTask(TaskModel taskModel)
+        [HttpPut("/api/v1/tasks")]
+        public async Task<ActionResult<ServiceResponse<UpdateTaskDto>>> UpdateTask(UpdateTaskDto taskModel)
         {
             return Ok(await this._TaskService.UpdateTask(taskModel));        
         }
@@ -56,10 +56,10 @@ namespace Protasker_backend
         /// </summary>
         /// <param name="id">Id de la tâche à supprimer</param>
         /// <returns>Les données de la tâche supprimée</returns>
-        [HttpDelete("/api/v1/tasks/{id}")]
-        public async Task<ActionResult<ServiceResponse<TaskModel>>> DeleteTask(int id)
+        [HttpDelete("/api/v1/tasks")]
+        public async Task<ActionResult<ServiceResponse<DeleteTaskDto>>> DeleteTask(DeleteTaskDto deleteTaskDto)
         {
-            return Ok(await this._TaskService.DeleteTask(id));         
+            return Ok(await this._TaskService.DeleteTask(deleteTaskDto));         
         }
     }
 }

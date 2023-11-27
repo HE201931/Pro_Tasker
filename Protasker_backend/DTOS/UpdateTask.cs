@@ -1,7 +1,7 @@
 
 namespace Protasker_backend
 {
-    public class CreateTaskDto
+    public class UpdateTaskDto
     {
         public int Id { get;set; }
         public int UserID { get;set; }

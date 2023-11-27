@@ -7,6 +7,12 @@ namespace Protasker_backend
         {
             CreateMap<TaskModel, CreateTaskDto>();
             CreateMap<CreateTaskDto, TaskModel>();
+
+            CreateMap<TaskModel, UpdateTaskDto>();
+            CreateMap<UpdateTaskDto, TaskModel>();
+
+            CreateMap<TaskModel, DeleteTaskDto>();
+            CreateMap<DeleteTaskDto, TaskModel>();
         }
     }
 }

@@ -23,6 +23,6 @@ namespace Protasker_backend
         public int UserID { get;set; }
         public UserModel? UserModel {get; set;}
         public string ?Libelle { get;set; }
-        public TaskStatus Status { get;set; }
+        public TaskModelStatus Status { get;set; }
     }
 }

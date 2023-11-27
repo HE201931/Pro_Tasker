@@ -1,0 +1,37 @@
+@import "../../styles/config.scss";
+
+.c-navbar {
+    position: fixed;
+    width: 100%;
+    background-color: rgb(47, 72, 88);
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+    height: auto;
+
+    .c-navbar-title {
+        h1 {
+            font-family: $police;
+            font-size: 34px;
+            color: orange;
+        }
+    }
+
+    .c-navbar-links {
+        display: flex;
+        gap: 25px;
+        padding-top: 10px;
+
+        .active-link {
+            font-family: $police;
+            font-size: 20px;
+            text-decoration: none;
+            color: orange;
+        }
+
+        .link {
+            @extend .active-link;
+            color: white;
+        }
+    }
+}
